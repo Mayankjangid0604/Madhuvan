@@ -1,0 +1,77 @@
+{
+  "name": "madhuvan",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "description": "Madhuvan Application",
+  "author": "Madhuvan Team",
+  "scripts": {
+    "dev": "vite",
+    "build": "npx vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
+    "lucide-react": "^0.562.0",
+    "nodemailer": "^7.0.12",
+    "pdfjs-dist": "^3.11.174",
+    "pdfkit": "^0.17.2",
+    "react-pdf": "^10.3.0",
+    "react-to-print": "^3.2.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "axios": "^1.13.2",
+    "concurrently": "^9.1.2",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
+    "javascript-obfuscator": "^5.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.1.4",
+    "vite": "^7.2.4",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.madhuvan.app",
+    "productName": "Madhuvan",
+    "asar": false,
+    "afterPack": "electron/afterPack.cjs",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Madhuvan",
+      "perMachine": true,
+      "allowElevation": true
+    }
+  }
+}

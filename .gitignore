@@ -1,0 +1,49 @@
+# Node dependencies
+node_modules/
+
+# Production / Build outputs
+dist/
+dist-electron/
+out/
+build/
+release/
+
+# Zip/Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# SQLite / Local databases
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+backend/data/
+
+# Uploads
+backend/uploads/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

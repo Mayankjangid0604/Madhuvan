@@ -1,0 +1,50 @@
+.danger-modal {
+  max-width: 520px;
+}
+
+.modal-header.danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+}
+
+.danger-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.student-highlight {
+  padding: 12px;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #991b1b;
+  margin-bottom: 16px;
+}
+
+.danger-warning {
+  font-size: 13px;
+  color: #7f1d1d;
+  margin-bottom: 16px;
+}
+
+.confirm-label {
+  font-size: 13px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.confirm-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.confirm-input:focus {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}

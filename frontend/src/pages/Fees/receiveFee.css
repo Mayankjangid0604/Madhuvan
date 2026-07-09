@@ -1,0 +1,1536 @@
+/* ============================================
+   RECEIVE FEE PAGE - GLASSMORPHISM DESIGN
+   Matches editStudent.css design system
+   ============================================ */
+
+/* ===============================
+   CSS VARIABLES
+================================ */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-hover: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(20px);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --bg-light: rgba(248, 250, 252, 0.9);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --border-light: rgba(226, 232, 240, 0.8);
+  --border-medium: rgba(203, 213, 225, 0.6);
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --purple: #8b5cf6;
+  --cyan: #06b6d4;
+}
+
+/* ===============================
+   GLOBAL RESET
+================================ */
+.receive-fee,
+.receive-fee *,
+.receive-fee *::before,
+.receive-fee *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   PAGE CONTAINER
+================================ */
+.receive-fee {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  min-height: 100%;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* ===============================
+   LOADING STATE
+================================ */
+.receive-fee .loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+  color: var(--text-muted);
+}
+
+.receive-fee .loading-container h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.receive-fee .loading-container p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.receive-fee .loading-spinner {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  color: var(--primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.receive-fee .spin {
+  animation: receiveFee-spin 1s linear infinite;
+}
+
+@keyframes receiveFee-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===============================
+   TOAST NOTIFICATIONS
+================================ */
+.receive-fee .toast-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: receiveFee-slideDown 0.3s ease;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes receiveFee-slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+.receive-fee .toast-banner.success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+  color: white;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.receive-fee .toast-banner.error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+  color: white;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.receive-fee .toast-banner svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.receive-fee .toast-banner span {
+  flex: 1;
+}
+
+.receive-fee .toast-banner .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  color: inherit;
+}
+
+.receive-fee .toast-banner .close-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===============================
+   PAGE HEADER
+================================ */
+.receive-fee .page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.receive-fee .header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.receive-fee .header-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.receive-fee .header-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 14px;
+}
+
+.receive-fee .header-info h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.receive-fee .header-info p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+}
+
+.receive-fee .header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.receive-fee .refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.receive-fee .refresh-btn:hover:not(:disabled) {
+  background: var(--glass-bg-hover);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.receive-fee .refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.receive-fee .refresh-btn.spinning svg {
+  animation: receiveFee-spin 1s linear infinite;
+}
+
+/* ===============================
+   STATS GRID
+================================ */
+.receive-fee .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.receive-fee .stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.receive-fee .stat-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.receive-fee .stat-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.receive-fee .stat-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 14px;
+}
+
+.receive-fee .stat-icon-blue {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.receive-fee .stat-icon-green {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.receive-fee .stat-icon-orange {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.receive-fee .stat-icon-red {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.receive-fee .stat-icon-purple {
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.receive-fee .stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.receive-fee .stat-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.receive-fee .stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   FILTERS BAR
+================================ */
+.receive-fee .filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.receive-fee .search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.receive-fee .search-wrapper .search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.2s ease;
+}
+
+.receive-fee .search-wrapper:focus-within .search-icon {
+  color: var(--primary);
+}
+
+.receive-fee .search-input {
+  width: 100%;
+  height: 44px;
+  padding: 10px 40px 10px 44px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: white;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.receive-fee .search-input:focus {
+  border-color: var(--primary);
+  outline: 2px solid rgba(37, 99, 235, 0.15);
+  outline-offset: 1px;
+}
+
+.receive-fee .search-input::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.receive-fee .clear-search {
+  position: absolute;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(100, 116, 139, 0.1);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.receive-fee .clear-search:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.receive-fee .filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.receive-fee .filter-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.receive-fee .filter-tab:hover {
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  border-color: var(--border-medium);
+}
+
+.receive-fee .filter-tab.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.receive-fee .tab-count {
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.receive-fee .filter-tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.receive-fee .results-count {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.receive-fee .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.receive-fee .empty-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light);
+  border-radius: 50%;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  border: 1px solid var(--border-light);
+}
+
+.receive-fee .empty-state h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.receive-fee .empty-state p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===============================
+   CARDS GRID
+================================ */
+.receive-fee .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+}
+
+/* ===============================
+   STUDENT CARD
+================================ */
+.receive-fee .student-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.receive-fee .student-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 16px 0 0 16px;
+  transition: background 0.2s ease;
+}
+
+.receive-fee .student-card.status-green::before {
+  background: linear-gradient(180deg, var(--success), #059669);
+}
+
+.receive-fee .student-card.status-orange::before {
+  background: linear-gradient(180deg, var(--warning), #d97706);
+}
+
+.receive-fee .student-card.status-red::before {
+  background: linear-gradient(180deg, var(--danger), #dc2626);
+}
+
+.receive-fee .student-card:hover {
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ── Card Header ── */
+.receive-fee .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.receive-fee .card-header:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.receive-fee .student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.receive-fee .student-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.receive-fee .avatar-green {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3);
+}
+
+.receive-fee .avatar-orange {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
+}
+
+.receive-fee .avatar-red {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.3);
+}
+
+.receive-fee .student-details {
+  min-width: 0;
+}
+
+.receive-fee .student-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.receive-fee .room-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.receive-fee .student-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 3px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.receive-fee .card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.receive-fee .status-badge {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.receive-fee .badge-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.receive-fee .badge-orange {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.receive-fee .badge-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.receive-fee .expand-icon {
+  color: var(--text-light);
+  transition: transform 0.3s ease;
+}
+
+.receive-fee .expand-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* ── Card Summary ── */
+.receive-fee .card-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1px;
+  padding: 0 20px 12px;
+  background: transparent;
+}
+
+.receive-fee .summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--bg-light);
+  border-radius: 10px;
+  margin: 0 2px;
+}
+
+.receive-fee .summary-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.receive-fee .summary-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.receive-fee .text-green { color: #047857 !important; }
+.receive-fee .text-green .summary-value { color: #047857; }
+.receive-fee .text-green .summary-label { color: #059669; }
+
+.receive-fee .text-orange { color: #b45309 !important; }
+.receive-fee .text-orange .summary-value { color: #b45309; }
+.receive-fee .text-orange .summary-label { color: #d97706; }
+
+.receive-fee .text-red { color: #dc2626 !important; }
+.receive-fee .text-purple { color: #7c3aed !important; }
+.receive-fee .text-purple .summary-value { color: #7c3aed; }
+.receive-fee .text-purple .summary-label { color: #8b5cf6; }
+
+/* ── Pay Button ── */
+.receive-fee .card-pay-section {
+  padding: 0 20px 16px;
+}
+
+.receive-fee .pay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.receive-fee .pay-btn:hover {
+  background: linear-gradient(135deg, var(--primary-hover), #1e3a8a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.receive-fee .pay-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Card Details (Expanded) ── */
+.receive-fee .card-details {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 4px;
+  animation: receiveFee-expand 0.3s ease;
+}
+
+@keyframes receiveFee-expand {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+
+.receive-fee .details-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0 12px;
+  color: var(--text-secondary);
+}
+
+.receive-fee .details-header h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.receive-fee .breakdown-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.receive-fee .breakdown-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.receive-fee .breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.receive-fee .breakdown-row span {
+  font-weight: 500;
+}
+
+.receive-fee .breakdown-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 8px 0;
+}
+
+.receive-fee .breakdown-row.total-row {
+  padding-top: 8px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.receive-fee .breakdown-row.total-row strong {
+  font-size: 15px;
+}
+
+.receive-fee .breakdown-row.remaining-row {
+  color: var(--warning);
+  font-weight: 700;
+}
+
+.receive-fee .breakdown-row.remaining-row strong {
+  font-size: 15px;
+  color: var(--danger);
+}
+
+.receive-fee .no-pending-fee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+  color: #047857;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.receive-fee .view-history-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.receive-fee .view-history-btn:hover {
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* ===============================
+   MODAL OVERLAY
+================================ */
+.receive-fee .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: receiveFee-fadeIn 0.2s ease;
+}
+
+@keyframes receiveFee-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===============================
+   PAYMENT MODAL
+================================ */
+.receive-fee .payment-modal {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  animation: receiveFee-slideUp 0.3s ease;
+}
+
+@keyframes receiveFee-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.receive-fee .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.receive-fee .modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.receive-fee .modal-title-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+}
+
+.receive-fee .modal-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.receive-fee .modal-close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.receive-fee .modal-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--danger);
+}
+
+/* ── Modal Body ── */
+.receive-fee .modal-body {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.receive-fee .modal-student-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+}
+
+.receive-fee .modal-student-avatar {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border-radius: 12px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
+}
+
+.receive-fee .modal-student-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.receive-fee .modal-student-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+}
+
+.receive-fee .modal-due-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(220, 38, 38, 0.04));
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 14px;
+}
+
+.receive-fee .due-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.receive-fee .due-amount {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--danger);
+}
+
+/* ── Quick Pay ── */
+.receive-fee .quick-pay-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.receive-fee .quick-pay-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.receive-fee .quick-pay-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.receive-fee .quick-pay-btn {
+  padding: 8px 16px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  background: white;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.receive-fee .quick-pay-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.receive-fee .quick-pay-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Modal Form ── */
+.receive-fee .modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.receive-fee .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.receive-fee .form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.receive-fee .required {
+  color: var(--danger);
+}
+
+.receive-fee .form-input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 500;
+  background: white;
+  transition: border-color 0.2s ease;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.receive-fee .form-input:hover {
+  border-color: #cbd5e1;
+}
+
+.receive-fee .form-input:focus {
+  border-color: var(--primary);
+  outline: 2px solid rgba(37, 99, 235, 0.15);
+  outline-offset: 1px;
+}
+
+.receive-fee .form-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.receive-fee select.form-input {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  padding-right: 48px;
+}
+
+.receive-fee .form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.receive-fee .currency-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.receive-fee .currency-symbol {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-weight: 700;
+  color: #475569;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.receive-fee .fee-amount-input {
+  padding-left: 48px !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  height: 56px !important;
+}
+
+/* ── Advance Notice ── */
+.receive-fee .advance-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.06));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 12px;
+}
+
+.receive-fee .advance-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3);
+}
+
+.receive-fee .advance-content strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #5b21b6;
+  margin-bottom: 4px;
+}
+
+.receive-fee .advance-content p {
+  font-size: 13px;
+  color: #7c3aed;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Modal Footer ── */
+.receive-fee .modal-footer {
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+  padding: 20px 28px 24px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-light);
+  border-radius: 0 0 20px 20px;
+}
+
+.receive-fee .cancel-btn,
+.receive-fee .submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: inherit;
+}
+
+.receive-fee .cancel-btn {
+  background: white;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+.receive-fee .cancel-btn:hover:not(:disabled) {
+  background: var(--bg-light);
+  border-color: var(--border-medium);
+  color: var(--text-secondary);
+}
+
+.receive-fee .submit-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.receive-fee .submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-hover), #1e3a8a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.receive-fee .cancel-btn:disabled,
+.receive-fee .submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 1024px) {
+  .receive-fee .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+
+  .receive-fee .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+/* ===============================
+   ISSUE 2: BREAKDOWN MINI CARDS
+================================ */
+.receive-fee .breakdown-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.receive-fee .mini-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.receive-fee .mini-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.receive-fee .mini-card-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.receive-fee .mini-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.receive-fee .mini-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  opacity: 0.85;
+}
+
+.receive-fee .mini-card-value {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Mini card color variants */
+.receive-fee .mini-card-blue {
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+.receive-fee .mini-card-blue .mini-card-icon {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+.receive-fee .mini-card-blue .mini-card-label { color: #1d4ed8; }
+.receive-fee .mini-card-blue .mini-card-value { color: #1e40af; }
+
+.receive-fee .mini-card-orange {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+}
+.receive-fee .mini-card-orange .mini-card-icon {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
+}
+.receive-fee .mini-card-orange .mini-card-label { color: #b45309; }
+.receive-fee .mini-card-orange .mini-card-value { color: #92400e; }
+
+.receive-fee .mini-card-red {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.18);
+}
+.receive-fee .mini-card-red .mini-card-icon {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+}
+.receive-fee .mini-card-red .mini-card-label { color: #dc2626; }
+.receive-fee .mini-card-red .mini-card-value { color: #b91c1c; }
+
+.receive-fee .mini-card-purple {
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+}
+.receive-fee .mini-card-purple .mini-card-icon {
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.25);
+}
+.receive-fee .mini-card-purple .mini-card-label { color: #7c3aed; }
+.receive-fee .mini-card-purple .mini-card-value { color: #6d28d9; }
+
+.receive-fee .mini-card-cyan {
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.18);
+}
+.receive-fee .mini-card-cyan .mini-card-icon {
+  background: linear-gradient(135deg, var(--cyan), #0891b2);
+  box-shadow: 0 2px 6px rgba(6, 182, 212, 0.25);
+}
+.receive-fee .mini-card-cyan .mini-card-label { color: #0891b2; }
+.receive-fee .mini-card-cyan .mini-card-value { color: #0e7490; }
+
+/* ===============================
+   ISSUE 3: SEPARATE PAY BUTTONS
+================================ */
+.receive-fee .pay-buttons-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.receive-fee .pay-buttons-row .pay-btn {
+  flex: 1;
+  min-width: 140px;
+}
+
+.receive-fee .pay-btn-rent {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover)) !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+}
+
+.receive-fee .pay-btn-rent:hover {
+  background: linear-gradient(135deg, var(--primary-hover), #1e3a8a) !important;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45) !important;
+}
+
+.receive-fee .pay-btn-security {
+  background: linear-gradient(135deg, var(--cyan), #0891b2) !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3) !important;
+}
+
+.receive-fee .pay-btn-security:hover {
+  background: linear-gradient(135deg, #0891b2, #0e7490) !important;
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45) !important;
+}
+
+/* ===============================
+   FEE TYPE BADGE (Payment Modal)
+================================ */
+.receive-fee .fee-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  align-self: flex-start;
+}
+
+.receive-fee .fee-type-badge.badge-rent {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.receive-fee .fee-type-badge.badge-security {
+  background: rgba(6, 182, 212, 0.1);
+  color: #0891b2;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}

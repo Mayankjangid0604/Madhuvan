@@ -1,0 +1,83 @@
+.invoice-preview-container {
+  background: #f3f4f6;
+  padding: 20px;
+  border-radius: 10px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.invoice-preview-paper {
+  background: #ffffff;
+  width: 794px; /* A4 width */
+  margin: auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.invoice-logo img {
+  max-height: 60px;
+}
+
+.invoice-title {
+  text-align: center;
+  flex: 1;
+}
+
+.invoice-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.invoice-title p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.invoice-divider {
+  border-top: 2px dashed #e5e7eb;
+  margin: 20px 0;
+}
+
+.invoice-section {
+  margin-bottom: 16px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.invoice-row.total {
+  font-weight: 700;
+  border-top: 2px solid #111827;
+  padding-top: 6px;
+  margin-top: 10px;
+}
+
+.invoice-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.copy-label {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: 1px dashed #9ca3af;
+  border-radius: 6px;
+  width: fit-content;
+  margin: 10px auto;
+}

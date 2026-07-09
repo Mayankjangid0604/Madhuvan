@@ -1,0 +1,391 @@
+/* ============================================================
+   MADHUVAN — UNIFIED PREMIUM THEME
+   Applied globally. No background image. No transparency.
+   Covers every page: Dashboard, Students, Fees, Ledger, Members,
+   Rooms, Add/Edit Student, Reports, Fine, Settings, and the rest.
+   ============================================================ */
+
+/* ---------------- DESIGN TOKENS ---------------- */
+:root {
+  /* neutral base */
+  --pt-bg:            #f5f6fa;
+  --pt-surface:       #ffffff;
+  --pt-surface-2:     #f8fafc;
+  --pt-border:        #e5e7eb;
+  --pt-border-strong: #cbd5e1;
+  --pt-text:          #0f172a;
+  --pt-text-muted:    #64748b;
+  --pt-text-soft:     #94a3b8;
+
+  /* accent */
+  --pt-primary:       #4f46e5;
+  --pt-primary-hi:    #6366f1;
+  --pt-primary-lo:    #4338ca;
+  --pt-primary-bg:    #eef2ff;
+
+  --pt-success:       #10b981;
+  --pt-success-bg:    #ecfdf5;
+  --pt-danger:        #ef4444;
+  --pt-danger-bg:     #fef2f2;
+  --pt-warning:       #f59e0b;
+  --pt-warning-bg:    #fffbeb;
+  --pt-info:          #0ea5e9;
+  --pt-info-bg:       #f0f9ff;
+
+  /* radii / shadows */
+  --pt-radius-sm: 8px;
+  --pt-radius:    12px;
+  --pt-radius-lg: 16px;
+  --pt-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --pt-shadow:    0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.08);
+  --pt-shadow-lg: 0 4px 6px rgba(15, 23, 42, 0.04), 0 20px 40px -16px rgba(15, 23, 42, 0.12);
+
+  /* type */
+  --pt-font: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+}
+
+/* dark mode */
+:root[data-theme="dark"] {
+  --pt-bg:            #0b1120;
+  --pt-surface:       #1e293b;
+  --pt-surface-2:     #182236;
+  --pt-border:        #334155;
+  --pt-border-strong: #475569;
+  --pt-text:          #f1f5f9;
+  --pt-text-muted:    #94a3b8;
+  --pt-text-soft:     #64748b;
+  --pt-primary-bg:    #1e1b4b;
+  --pt-success-bg:    #052e21;
+  --pt-danger-bg:     #3f1015;
+  --pt-warning-bg:    #3b2408;
+  --pt-info-bg:       #0f2438;
+}
+
+/* ---------------- GLOBAL BASE ---------------- */
+html, body, #root {
+  background: var(--pt-bg) !important;
+  color: var(--pt-text);
+  font-family: var(--pt-font);
+}
+
+/* Kill any decorative shapes/gradients left in old stylesheets */
+.shape, .shape-1, .shape-2, .shape-3, .gradient-orb, .orb-1, .orb-2, .orb-3 {
+  display: none !important;
+}
+
+/* Every top-level page container gets a plain background */
+.dashboard,
+.students-page,
+.fine-page,
+.ledger-page,
+.reports-page,
+.settings-page,
+.member-page,
+.add-student-container,
+.fd-container,
+.rooms-page,
+.receive-fee-page,
+.edit-student-container,
+.checkout-history-page {
+  background: var(--pt-bg) !important;
+  padding: 24px 28px 40px !important;
+  font-family: var(--pt-font);
+}
+
+/* ---------------- TYPOGRAPHY ---------------- */
+.dashboard h1, .dashboard-title,
+.students-header h2, .settings-header h2, .member-header h2,
+.page-header h1, .fd-header h1 {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: var(--pt-text) !important;
+  letter-spacing: -0.4px !important;
+  margin: 0 !important;
+}
+.subtitle, .dashboard .subtitle, .header-text p, .students-header .subtitle {
+  color: var(--pt-text-muted) !important;
+  font-size: 13px !important;
+  margin-top: 4px !important;
+}
+h3, h4, h5 { color: var(--pt-text); }
+
+/* ---------------- CARDS ---------------- */
+.stat-card,
+.dashboard-section,
+.dashboard .card,
+.dashboard .section-card,
+.students-table-container,
+.filters-section,
+.history-container,
+.fine-form-card,
+.stats-grid > .stat-card,
+.fee-card,
+.form-section-card,
+.member-card,
+.settings-info,
+.card,
+.glass-card,
+.glass-light,
+.fd-fee-card,
+.entry-preview,
+.info-block {
+  background: var(--pt-surface) !important;
+  border: 1px solid var(--pt-border) !important;
+  border-radius: var(--pt-radius-lg) !important;
+  box-shadow: var(--pt-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: var(--pt-text) !important;
+}
+
+/* Stat cards — quiet gradient icon */
+.stat-card { padding: 20px !important; }
+.stat-icon,
+.stat-icon-wrapper {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  background: var(--pt-primary) !important;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.28) !important;
+}
+.stat-icon-wrapper.income,
+.stat-card.income .stat-icon-wrapper { background: var(--pt-success) !important; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25) !important; }
+.stat-icon-wrapper.expense,
+.stat-card.expense .stat-icon-wrapper { background: var(--pt-danger) !important; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25) !important; }
+.stat-icon-wrapper.balance,
+.stat-card.balance .stat-icon-wrapper { background: var(--pt-info) !important; box-shadow: 0 4px 10px rgba(14, 165, 233, 0.25) !important; }
+.stat-icon-wrapper.pending,
+.stat-card.pending .stat-icon-wrapper { background: var(--pt-warning) !important; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25) !important; }
+.stat-value {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.4px !important;
+  color: var(--pt-text) !important;
+  margin: 6px 0 !important;
+  line-height: 1.1 !important;
+}
+.stat-title, .stat-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--pt-text-muted) !important;
+  margin: 0 !important;
+}
+.stat-subtitle {
+  font-size: 11px !important;
+  color: var(--pt-text-soft) !important;
+  margin-top: 4px !important;
+}
+
+/* ---------------- BUTTONS ---------------- */
+button, .btn {
+  font-family: var(--pt-font);
+  font-weight: 600 !important;
+  border-radius: var(--pt-radius-sm) !important;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+button:focus, button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+.btn-primary, .action-btn.primary {
+  background: var(--pt-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25) !important;
+}
+.btn-primary:hover, .action-btn.primary:hover { background: var(--pt-primary-lo) !important; }
+.btn-secondary {
+  background: var(--pt-surface) !important;
+  color: var(--pt-text) !important;
+  border: 1px solid var(--pt-border) !important;
+}
+.btn-secondary:hover { background: var(--pt-surface-2) !important; }
+.btn-danger  { background: var(--pt-danger)  !important; color: #fff !important; border: none !important; }
+.btn-success { background: var(--pt-success) !important; color: #fff !important; border: none !important; }
+.btn-warning { background: var(--pt-warning) !important; color: #fff !important; border: none !important; }
+.btn-outline { background: transparent !important; color: var(--pt-primary) !important; border: 1px solid var(--pt-primary) !important; }
+.btn-outline:hover { background: var(--pt-primary-bg) !important; }
+.btn-ghost { background: transparent !important; color: var(--pt-text) !important; border: 1px solid var(--pt-border) !important; }
+
+/* ---------------- INPUTS ---------------- */
+input, select, textarea {
+  font-family: var(--pt-font);
+  color: var(--pt-text) !important;
+  background-color: var(--pt-surface) !important;
+  border: 1px solid var(--pt-border) !important;
+  border-radius: var(--pt-radius-sm) !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  -webkit-text-fill-color: var(--pt-text) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--pt-primary) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+  outline: none !important;
+}
+input::placeholder, textarea::placeholder {
+  color: var(--pt-text-soft) !important;
+  -webkit-text-fill-color: var(--pt-text-soft) !important;
+}
+label {
+  color: var(--pt-text);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* ---------------- TABLES ---------------- */
+table.students-table,
+table.data-table,
+table.fine-table,
+table.ledger-table,
+table.rooms-table,
+table.member-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--pt-surface);
+  border: 1px solid var(--pt-border);
+  border-radius: var(--pt-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--pt-shadow-sm);
+}
+table.students-table th,
+table.data-table th,
+table.fine-table th,
+table.ledger-table th,
+table.rooms-table th,
+table.member-table th {
+  background: var(--pt-surface-2) !important;
+  color: var(--pt-text) !important;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--pt-border);
+}
+table.students-table td,
+table.data-table td,
+table.fine-table td,
+table.ledger-table td,
+table.rooms-table td,
+table.member-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--pt-border);
+  color: var(--pt-text);
+  background: var(--pt-surface);
+  font-size: 13px;
+}
+table.students-table tr:hover td,
+table.data-table tr:hover td,
+table.fine-table tr:hover td,
+table.ledger-table tr:hover td {
+  background: var(--pt-surface-2);
+}
+table.students-table tbody tr:last-child td,
+table.data-table tbody tr:last-child td { border-bottom: none; }
+
+/* ---------------- MODALS ---------------- */
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.55) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.modal-content,
+.modal-container,
+.glass-modal {
+  background: var(--pt-surface) !important;
+  border: 1px solid var(--pt-border) !important;
+  border-radius: var(--pt-radius-lg) !important;
+  box-shadow: var(--pt-shadow-lg) !important;
+  backdrop-filter: none !important;
+  color: var(--pt-text) !important;
+}
+.modal-header {
+  border-bottom: 1px solid var(--pt-border);
+  background: var(--pt-surface-2);
+}
+.modal-header h3 { color: var(--pt-text); }
+
+/* ---------------- BADGES / CHIPS ---------------- */
+.badge, .type-badge, .status-badge {
+  border-radius: 999px !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+.status-badge.success, .badge.paid    { background: var(--pt-success-bg) !important; color: #065f46 !important; }
+.status-badge.danger,  .badge.danger,
+.status-badge.overdue, .badge.error   { background: var(--pt-danger-bg)  !important; color: #991b1b !important; }
+.status-badge.warning, .badge.due     { background: var(--pt-warning-bg) !important; color: #92400e !important; }
+.status-badge.info,    .badge.info    { background: var(--pt-info-bg)    !important; color: #075985 !important; }
+
+/* ---------------- TOPBAR / SIDEBAR ---------------- */
+.topbar {
+  background: var(--pt-surface) !important;
+  border-bottom: 1px solid var(--pt-border) !important;
+  box-shadow: var(--pt-shadow-sm) !important;
+}
+.page-title { color: var(--pt-text) !important; }
+.sidebar,
+.app-sidebar {
+  background: var(--pt-surface) !important;
+  border-right: 1px solid var(--pt-border) !important;
+}
+.sidebar a, .app-sidebar a { color: var(--pt-text-muted) !important; }
+.sidebar a.active, .app-sidebar a.active {
+  color: var(--pt-primary) !important;
+  background: var(--pt-primary-bg) !important;
+  border-radius: var(--pt-radius-sm);
+}
+
+/* ---------------- LEDGER SPECIFIC ---------------- */
+.date-presets .preset-btn,
+.filter-tab {
+  background: var(--pt-surface) !important;
+  color: var(--pt-text) !important;
+  border: 1px solid var(--pt-border) !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+}
+.date-presets .preset-btn.active,
+.filter-tab.active {
+  background: var(--pt-primary) !important;
+  color: #fff !important;
+  border-color: var(--pt-primary) !important;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25) !important;
+}
+
+/* ---------------- MEMBER CARDS ---------------- */
+.member-avatar {
+  background: var(--pt-primary) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+/* ---------------- DARK MODE FIXES ---------------- */
+:root[data-theme="dark"] table.students-table tr:hover td,
+:root[data-theme="dark"] table.data-table tr:hover td,
+:root[data-theme="dark"] table.fine-table tr:hover td,
+:root[data-theme="dark"] table.ledger-table tr:hover td {
+  background: #263449 !important;
+}
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea {
+  background: var(--pt-surface-2) !important;
+  color: var(--pt-text) !important;
+  border-color: var(--pt-border) !important;
+}

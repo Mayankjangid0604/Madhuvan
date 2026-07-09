@@ -1,0 +1,184 @@
+/* Salary Payment Modal Styles */
+.salary-member-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.salary-member-info .member-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.salary-member-info .member-salary {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.salary-member-info .member-salary strong {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Salary Status Box */
+.salary-status-box {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.status-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.status-row:hover {
+  background: rgba(0,0,0,0.02);
+}
+
+.status-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.status-value {
+  font-weight: 600;
+  color: #212529;
+  font-size: 0.95rem;
+}
+
+.status-value.strong {
+  font-size: 1.05rem;
+  color: #495057;
+}
+
+.status-extra {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+/* Special status rows */
+.status-row.advance {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+}
+
+.status-row.advance .status-value {
+  color: #856404;
+}
+
+.status-row.collected {
+  background: #d1ecf1;
+  border: 1px solid #17a2b8;
+}
+
+.status-row.collected .status-value {
+  color: #0c5460;
+}
+
+.status-row.paid {
+  background: #d4edda;
+  border: 1px solid #28a745;
+}
+
+.status-row.paid .status-value {
+  color: #155724;
+}
+
+.status-row.remaining {
+  background: #f8d7da;
+  border: 1px solid #dc3545;
+}
+
+.status-row.remaining .status-value {
+  color: #721c24;
+}
+
+.status-row.excess {
+  background: #d4edda;
+  border: 1px solid #28a745;
+}
+
+.status-row.excess .status-value {
+  color: #155724;
+}
+
+.status-row.complete {
+  background: #d4edda;
+  border: 1px solid #28a745;
+  justify-content: center;
+  font-weight: 600;
+  color: #155724;
+}
+
+.status-divider {
+  height: 1px;
+  background: #dee2e6;
+  margin: 0.5rem 0;
+}
+
+.status-warning {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff3cd;
+  color: #856404;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  border: 1px solid #ffc107;
+}
+
+/* Highlight colors */
+.highlight-red {
+  color: #dc3545 !important;
+  font-size: 1.1rem !important;
+}
+
+.highlight-green {
+  color: #28a745 !important;
+  font-size: 1.1rem !important;
+}
+
+.highlight-yellow {
+  color: #ffc107 !important;
+}
+
+/* Form adjustments */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}

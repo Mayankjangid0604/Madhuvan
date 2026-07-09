@@ -1,0 +1,26 @@
+.confirm-modal {
+  max-width: 400px;
+}
+
+.modal-header.danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+}
+
+.modal-header.warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: #b45309;
+}
+
+.modal-header.info {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+}
+
+.confirm-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0;
+  padding: 10px 0;
+}

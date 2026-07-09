@@ -1,0 +1,877 @@
+/* ============================================
+   FEE DETAILS PAGE
+   ============================================ */
+
+.fd-page {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* Loading & Empty States */
+.fd-loading,
+.fd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+  color: #6b7280;
+}
+
+.fd-loading h3,
+.fd-empty h3 {
+  margin: 0;
+  color: #374151;
+}
+
+.fd-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.fd-empty button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.fd-empty button:hover {
+  background: #2563eb;
+}
+
+/* Header */
+.fd-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.fd-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.fd-back:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.fd-header-content h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.fd-header-content p {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Student Card */
+.fd-student-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.fd-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.fd-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fd-student-info {
+  flex: 1;
+}
+
+.fd-student-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.fd-father-name {
+  margin: 0.25rem 0 0.75rem;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.fd-student-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fd-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+}
+
+.fd-student-id {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+}
+
+.fd-student-id span {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.fd-student-id strong {
+  font-size: 1.25rem;
+}
+
+/* Summary Cards */
+.fd-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fd-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3b82f6;
+}
+
+.fd-summary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fd-summary-content {
+  flex: 1;
+}
+
+.fd-summary-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.fd-summary-value {
+  display: block;
+  font-size: 1.35rem;
+  color: #111827;
+}
+
+.fd-card-green {
+  border-left-color: #10b981;
+}
+
+.fd-card-green .fd-summary-icon {
+  background: #d1fae5;
+  color: #10b981;
+}
+
+.fd-card-orange {
+  border-left-color: #f59e0b;
+}
+
+.fd-card-orange .fd-summary-icon {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.fd-card-purple {
+  border-left-color: #8b5cf6;
+}
+
+.fd-card-purple .fd-summary-icon {
+  background: #ede9fe;
+  color: #8b5cf6;
+}
+
+.fd-card-red {
+  border-left-color: #ef4444;
+}
+
+.fd-card-red .fd-summary-icon {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* Tabs */
+.fd-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.fd-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.fd-tab:hover {
+  background: #f3f4f6;
+}
+
+.fd-tab.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.fd-tab-count {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.fd-tab.active .fd-tab-count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Content */
+.fd-content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Empty State */
+.fd-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: #9ca3af;
+}
+
+.fd-empty-state h4 {
+  margin: 1rem 0 0.5rem;
+  color: #6b7280;
+}
+
+.fd-empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   FEE CARDS
+   ============================================ */
+
+.fd-fees-section {
+  padding: 1.5rem;
+}
+
+.fd-fees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fd-fee-card {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.fd-fee-card:hover {
+  border-color: #d1d5db;
+}
+
+/* Fee Status Colors */
+.fd-fee-green { border-left: 4px solid #10b981; }
+.fd-fee-orange { border-left: 4px solid #f59e0b; }
+.fd-fee-red { border-left: 4px solid #ef4444; }
+.fd-fee-purple { border-left: 4px solid #8b5cf6; }
+
+.fd-fee-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.fd-fee-header:hover {
+  background: #f3f4f6;
+}
+
+.fd-fee-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fd-fee-month-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.fd-fee-type {
+  font-weight: 500;
+  color: #374151;
+}
+
+.fd-fee-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fd-fee-status {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.fd-status-green { background: #d1fae5; color: #047857; }
+.fd-status-orange { background: #fef3c7; color: #b45309; }
+.fd-status-red { background: #fee2e2; color: #b91c1c; }
+.fd-status-purple { background: #ede9fe; color: #6d28d9; }
+
+.fd-fee-amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.fd-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.fd-expand-btn:hover {
+  background: #d1d5db;
+  color: #374151;
+}
+
+/* Fee Body (Expanded) */
+.fd-fee-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .fd-fee-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fee Breakdown */
+.fd-fee-breakdown h5,
+.fd-fee-payments h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.fd-breakdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fd-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.fd-breakdown-subtotal {
+  font-weight: 500;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.fd-breakdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+.fd-breakdown-total {
+  font-size: 1rem;
+  padding-top: 0.5rem;
+}
+
+.fd-breakdown-total strong {
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.fd-breakdown-remaining {
+  background: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.25rem;
+}
+
+.fd-fee-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.fd-fee-dates span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Fee Payments */
+.fd-no-payments {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.fd-payments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fd-payment-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.fd-payment-number {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.fd-payment-details {
+  flex: 1;
+}
+
+.fd-payment-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.fd-payment-amount {
+  font-size: 1rem;
+  color: #059669;
+}
+
+.fd-payment-mode {
+  background: #e5e7eb;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+.fd-payment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.fd-view-invoice-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.fd-view-invoice-btn:hover {
+  background: #2563eb;
+}
+
+/* ============================================
+   TRANSACTIONS TAB
+   ============================================ */
+
+.fd-transactions-section {
+  padding: 1.5rem;
+}
+
+.fd-transactions-list {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fd-transactions-header {
+  display: grid;
+  grid-template-columns: 120px 1fr 120px 120px 100px 100px;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.fd-transaction-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 120px 120px 100px 100px;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  align-items: center;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.2s;
+}
+
+.fd-transaction-row:last-child {
+  border-bottom: none;
+}
+
+.fd-transaction-row:hover {
+  background: #fafafa;
+}
+
+.fd-tx-date-main {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+}
+
+.fd-tx-date-time {
+  display: block;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.fd-tx-invoice-number {
+  display: block;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.fd-tx-fee-type {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.fd-tx-amount strong {
+  font-size: 1.05rem;
+  color: #059669;
+}
+
+.fd-mode-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.fd-mode-cash { background: #d1fae5; color: #047857; }
+.fd-mode-upi { background: #dbeafe; color: #1d4ed8; }
+.fd-mode-bank { background: #e0e7ff; color: #4338ca; }
+.fd-mode-cheque { background: #fef3c7; color: #b45309; }
+.fd-mode-online { background: #cffafe; color: #0e7490; }
+
+.fd-tx-ref {
+  display: block;
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+.fd-tx-received {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.fd-invoice-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  background: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.fd-invoice-btn:hover {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+/* Transactions Summary */
+.fd-transactions-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.fd-tx-summary-item {
+  text-align: center;
+}
+
+.fd-tx-summary-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.fd-tx-summary-item strong {
+  font-size: 1.15rem;
+  color: #111827;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.fd-text-green { color: #059669 !important; }
+.fd-text-red { color: #dc2626 !important; }
+.fd-text-orange { color: #d97706 !important; }
+.fd-text-purple { color: #7c3aed !important; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 900px) {
+  .fd-transactions-header,
+  .fd-transaction-row {
+    grid-template-columns: 100px 1fr 100px 100px;
+  }
+  
+  .fd-th-received,
+  .fd-tx-received,
+  .fd-th-mode .fd-tx-ref {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .fd-page {
+    padding: 1rem;
+  }
+  
+  .fd-student-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+  
+  .fd-student-meta {
+    justify-content: center;
+  }
+  
+  .fd-student-id {
+    margin-top: 0.5rem;
+  }
+  
+  .fd-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .fd-transactions-header {
+    display: none;
+  }
+  
+  .fd-transaction-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .fd-tx-date {
+    order: 1;
+    flex: 1;
+  }
+  
+  .fd-tx-amount {
+    order: 2;
+  }
+  
+  .fd-tx-invoice {
+    order: 3;
+    flex-basis: 100%;
+  }
+  
+  .fd-tx-mode {
+    order: 4;
+  }
+  
+  .fd-tx-action {
+    order: 5;
+    margin-left: auto;
+  }
+  
+  .fd-fee-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .fd-fee-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,711 @@
+/* =========================
+   A4 PAGE SETUP - MUST BE FIRST
+========================= */
+@page {
+  size: A4 portrait;
+  margin: 0mm 0mm;
+}
+
+/* =========================
+   PRINT PAGE BASE
+========================= */
+.invoice-page {
+  width: 100%;
+  background: #ffffff;
+  color: #1f2937;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.invoice-page * {
+  box-sizing: border-box;
+}
+
+/* =========================
+   COPY BLOCK - COMPACT FOR 2 PER PAGE
+========================= */
+.invoice-copy {
+  padding: 16px 20px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.invoice-copy:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   HEADER - COMPACT
+========================= */
+.invoice-header {
+  display: grid;
+  grid-template-columns: 70px 1fr 70px;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #e5e7eb;
+  margin-bottom: 10px;
+}
+
+.invoice-header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invoice-header .logo.left {
+  justify-content: flex-start;
+}
+
+.invoice-header .logo.right {
+  justify-content: flex-end;
+}
+
+.invoice-header .logo img {
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.invoice-header .center {
+  text-align: center;
+}
+
+.invoice-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.invoice-header .tagline {
+  margin: 2px 0;
+  font-size: 10px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.invoice-header .address {
+  margin: 2px 0;
+  font-size: 9px;
+  color: #4b5563;
+}
+
+.invoice-header .contact {
+  margin: 2px 0 0;
+  font-size: 9px;
+  color: #374151;
+}
+
+/* =========================
+   INVOICE TITLE BAR - COMPACT
+========================= */
+.invoice-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.copy-title {
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #1e40af;
+  text-transform: uppercase;
+}
+
+.invoice-number-badge {
+  background: #1e40af;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.invoice-number-badge strong {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   INFO SECTION - COMPACT
+========================= */
+.info-section {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 20px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #4b5563;
+  font-size: 10px;
+  min-width: 90px;
+}
+
+.info-value {
+  color: #1f2937;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.info-value.highlight {
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.status-paid {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.status-pending,
+.status-due {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-overdue {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-partial {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* =========================
+   FEE TABLE - COMPACT
+========================= */
+.fee-table-container {
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.fee-table thead {
+  background: #f3f4f6;
+}
+
+.fee-table thead th {
+  padding: 6px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1.5px solid #e5e7eb;
+}
+
+.fee-table thead th:last-child {
+  text-align: right;
+}
+
+.fee-table tbody td,
+.fee-table tfoot td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.fee-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.fee-table tbody td:first-child,
+.fee-table tfoot td:first-child {
+  width: 65%;
+  color: #374151;
+}
+
+.fee-table tbody td:last-child,
+.fee-table tfoot td:last-child {
+  text-align: right;
+  font-weight: 500;
+  color: #1f2937;
+  font-family: "Consolas", "Monaco", monospace;
+}
+
+/* Row Variants */
+.fee-table .discount-row td {
+  color: #059669;
+}
+
+.fee-table .danger-row td {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.fee-table .info-row td {
+  color: #0369a1;
+  background: #f0f9ff;
+}
+
+.fee-table .success-row td {
+  color: #047857;
+  background: #ecfdf5;
+}
+
+/* Footer Rows */
+.fee-table tfoot {
+  background: #f8fafc;
+}
+
+.fee-table .total-row td {
+  font-weight: 700;
+  font-size: 11px;
+  border-top: 1.5px solid #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+  background: #f1f5f9;
+}
+
+.fee-table .paid-row td {
+  color: #059669;
+  font-weight: 600;
+}
+
+.fee-table .balance-row td {
+  font-weight: 700;
+  font-size: 11px;
+  color: #1e40af;
+  background: #eff6ff;
+  border-top: 1.5px solid #3b82f6;
+}
+
+/* =========================
+   FOOTER - COMPACT
+========================= */
+.invoice-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1.5px dashed #d1d5db;
+  margin-top: 6px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  font-size: 9px;
+  color: #6b7280;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.invoice-ref {
+  margin: 0;
+  font-size: 10px;
+  color: #374151;
+}
+
+.invoice-ref strong {
+  color: #1e40af;
+  font-size: 10px;
+}
+
+.reprint-note {
+  margin: 2px 0 0;
+  font-size: 8px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.signature-block {
+  display: inline-block;
+  text-align: center;
+}
+
+.signature-line {
+  width: 100px;
+  height: 1px;
+  background: #374151;
+  margin-bottom: 4px;
+}
+
+.signature-block p {
+  margin: 0;
+  font-size: 8px;
+  color: #6b7280;
+}
+
+/* =========================
+   DIVIDER BETWEEN COPIES
+========================= */
+.invoice-divider {
+  border: none;
+  border-top: 1px dashed #9ca3af;
+  margin: 12px 0;
+}
+
+/* =========================
+   PRINT STYLES - A4 FIT
+========================= */
+@media print {
+  /* Reset everything */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  /* Main invoice page container */
+  .invoice-page {
+    width: 190mm !important;
+    max-width: 190mm !important;
+    min-height: auto !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 5mm 0 !important;
+    background: #fff !important;
+    font-size: 10px !important;
+  }
+
+  /* Each copy block - fit 2 on one A4 page */
+  .invoice-copy {
+    width: 100% !important;
+    max-height: 133mm !important; /* ~half of A4 height minus margins */
+    min-height: auto !important;
+    padding: 12px 16px !important;
+    margin-bottom: 8mm !important;
+    border: 1px solid #aaa !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .invoice-copy:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Prevent page break between copies if they fit */
+  .invoice-copy:first-child {
+    page-break-after: avoid !important;
+  }
+
+  /* Header compact */
+  .invoice-header {
+    grid-template-columns: 50px 1fr 50px !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .invoice-header .logo img {
+    max-width: 45px !important;
+    max-height: 45px !important;
+  }
+
+  .invoice-header h2 {
+    font-size: 14px !important;
+  }
+
+  .invoice-header .tagline {
+    font-size: 8px !important;
+  }
+
+  .invoice-header .address,
+  .invoice-header .contact {
+    font-size: 8px !important;
+    margin: 1px 0 !important;
+  }
+
+  /* Title bar compact */
+  .invoice-title-bar {
+    padding: 6px 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .copy-title {
+    font-size: 10px !important;
+  }
+
+  .invoice-number-badge {
+    padding: 3px 8px !important;
+    font-size: 9px !important;
+    background: #1e40af !important;
+    color: #fff !important;
+  }
+
+  /* Info section compact */
+  .info-section {
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .info-grid {
+    gap: 4px 16px !important;
+  }
+
+  .info-label {
+    font-size: 9px !important;
+    min-width: 80px !important;
+  }
+
+  .info-value {
+    font-size: 9px !important;
+  }
+
+  .info-value.highlight {
+    font-size: 10px !important;
+  }
+
+  .status-badge {
+    padding: 2px 6px !important;
+    font-size: 8px !important;
+  }
+
+  /* Table compact */
+  .fee-table-container {
+    margin-bottom: 8px !important;
+  }
+
+  .fee-table {
+    font-size: 9px !important;
+  }
+
+  .fee-table thead th {
+    padding: 4px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .fee-table tbody td,
+  .fee-table tfoot td {
+    padding: 4px 8px !important;
+  }
+
+  .fee-table .total-row td,
+  .fee-table .balance-row td {
+    font-size: 10px !important;
+  }
+
+  /* Footer compact */
+  .invoice-footer {
+    padding-top: 8px !important;
+    gap: 10px !important;
+    margin-top: 4px !important;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    font-size: 8px !important;
+  }
+
+  .invoice-ref {
+    font-size: 9px !important;
+  }
+
+  .invoice-ref strong {
+    font-size: 9px !important;
+  }
+
+  .reprint-note {
+    font-size: 7px !important;
+  }
+
+  .signature-line {
+    width: 80px !important;
+  }
+
+  .signature-block p {
+    font-size: 7px !important;
+  }
+
+  /* Ensure backgrounds print */
+  .invoice-title-bar {
+    background: #f1f5f9 !important;
+  }
+
+  .info-section {
+    background: #f9fafb !important;
+  }
+
+  .fee-table thead {
+    background: #f3f4f6 !important;
+  }
+
+  .fee-table .total-row td {
+    background: #f1f5f9 !important;
+  }
+
+  .fee-table .balance-row td {
+    background: #eff6ff !important;
+  }
+
+  .fee-table .danger-row td {
+    background: #fef2f2 !important;
+  }
+
+  .fee-table .success-row td {
+    background: #ecfdf5 !important;
+  }
+
+  .fee-table .info-row td {
+    background: #f0f9ff !important;
+  }
+
+  .status-paid {
+    background: #d1fae5 !important;
+    color: #047857 !important;
+  }
+
+  .status-pending,
+  .status-due {
+    background: #fef3c7 !important;
+    color: #b45309 !important;
+  }
+
+  .status-overdue {
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+  }
+
+  .status-partial {
+    background: #dbeafe !important;
+    color: #1d4ed8 !important;
+  }
+
+  /* Hide divider in print */
+  .invoice-divider {
+    display: none !important;
+  }
+}
+
+/* =========================
+   SCREEN PREVIEW - LOOK LIKE A4
+========================= */
+@media screen {
+  .invoice-page {
+    max-width: 794px; /* A4 width in pixels at 96dpi */
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+@media screen and (max-width: 768px) {
+  .invoice-copy {
+    padding: 12px;
+  }
+
+  .invoice-header {
+    grid-template-columns: 50px 1fr 50px;
+    gap: 8px;
+  }
+
+  .invoice-header h2 {
+    font-size: 14px;
+  }
+
+  .invoice-header .logo img {
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .invoice-title-bar {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    text-align: center;
+  }
+
+  .signature-block {
+    margin-top: 10px;
+  }
+}

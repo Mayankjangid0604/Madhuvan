@@ -1,0 +1,15 @@
+{
+  "asar": false,
+  "npmRebuild": false,
+  "directories": {
+    "output": "dist-electron-build"
+  },
+  "files": [
+    "dist/**",
+    "electron/**",
+    "backend/**"
+  ],
+  "win": {
+    "target": "nsis"
+  }
+}

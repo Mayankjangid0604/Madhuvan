@@ -1,0 +1,1667 @@
+/* ============================================
+   EDIT STUDENT PAGE - GLASSMORPHISM DESIGN
+   Complete Fixed Version
+   ============================================ */
+
+/* ===============================
+   CSS VARIABLES
+================================ */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-hover: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(20px);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --bg-light: rgba(248, 250, 252, 0.9);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --border-light: rgba(226, 232, 240, 0.8);
+  --border-medium: rgba(203, 213, 225, 0.6);
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --purple: #8b5cf6;
+  --cyan: #06b6d4;
+  --input-icon-size: 18px;
+  --input-icon-left: 14px;
+  --input-padding-left: 46px;
+  --input-padding-right: 14px;
+  --input-padding-with-clear: 42px;
+}
+
+/* ===============================
+   GLOBAL RESET FOR THIS PAGE
+================================ */
+.edit-student,
+.edit-student *,
+.edit-student *::before,
+.edit-student *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   PAGE CONTAINER
+================================ */
+.edit-student {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  min-height: 100%;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* ===============================
+   LOADING STATE
+================================ */
+.edit-student .loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+  color: var(--text-muted);
+}
+
+.edit-student .loading-container h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.edit-student .loading-container p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.edit-student .loading-spinner {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  color: var(--primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Spin Animation */
+.edit-student .spin {
+  animation: editStudentSpin 1s linear infinite;
+}
+
+@keyframes editStudentSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===============================
+   HEADER ACTIONS
+================================ */
+.edit-student .header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.edit-student .refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  will-change: color, border-color;
+}
+
+.edit-student .refresh-btn:hover:not(:disabled) {
+  background: var(--glass-bg-hover);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.edit-student .refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.edit-student .refresh-btn.spinning svg {
+  animation: editStudentSpin 1s linear infinite;
+}
+
+/* ===============================
+   MESSAGE BANNERS
+================================ */
+.edit-student .message-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: editStudentSlideDown 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes editStudentSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.edit-student .message-banner.success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.edit-student .message-banner.error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.edit-student .message-banner svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.edit-student .message-banner span {
+  flex: 1;
+}
+
+.edit-student .message-banner .close-btn {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: inherit;
+}
+
+.edit-student .message-banner .close-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   ALLOCATION INFO BANNER
+================================ */
+.edit-student .allocation-info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.edit-student .banner-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.edit-student .banner-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.edit-student .banner-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.edit-student .banner-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 12px;
+}
+
+.edit-student .banner-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.edit-student .detail-badge {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.edit-student .detail-badge.room {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e40af;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.edit-student .detail-badge.bed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.edit-student .detail-badge.floor {
+  background: rgba(139, 92, 246, 0.15);
+  color: #5b21b6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.edit-student .banner-hint {
+  font-size: 13px;
+  color: #3b82f6;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ===============================
+   FORM CARD
+================================ */
+.edit-student .form-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.edit-student .form-card:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.edit-student .form-card form {
+  display: block;
+  width: 100%;
+}
+
+/* ===============================
+   FORM SECTIONS
+================================ */
+.edit-student .form-section {
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--border-light);
+  background: transparent;
+  position: relative;
+}
+
+.edit-student .form-section:last-of-type {
+  border-bottom: none;
+}
+
+.edit-student .section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.edit-student .section-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.edit-student .section-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 14px;
+}
+
+.edit-student .section-icon svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.edit-student .section-icon.parent-icon {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.edit-student .section-icon.address-icon {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.edit-student .section-icon.fee-icon {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.edit-student .section-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.edit-student .section-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.edit-student .section-info p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===============================
+   PHOTO UPLOAD SECTION
+================================ */
+.edit-student .photo-upload-container {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.edit-student .photo-preview-wrapper {
+  flex-shrink: 0;
+}
+
+.edit-student .photo-preview {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--border-light);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: var(--bg-light);
+}
+
+.edit-student .photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.edit-student .photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.edit-student .photo-preview:hover .photo-overlay {
+  opacity: 1;
+}
+
+.edit-student .photo-edit-btn,
+.edit-student .photo-remove-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.edit-student .photo-edit-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-secondary);
+}
+
+.edit-student .photo-edit-btn:hover {
+  background: white;
+  transform: scale(1.05);
+}
+
+.edit-student .photo-edit-btn svg,
+.edit-student .photo-remove-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.edit-student .photo-remove-btn {
+  background: var(--danger);
+  color: white;
+}
+
+.edit-student .photo-remove-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+.edit-student .photo-placeholder {
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  border: 2px dashed var(--border-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  background: var(--bg-light);
+  transition: all 0.3s ease;
+  color: var(--text-muted);
+}
+
+.edit-student .photo-placeholder:hover {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--primary);
+  transform: scale(1.02);
+}
+
+.edit-student .photo-placeholder svg {
+  width: 32px;
+  height: 32px;
+}
+
+.edit-student .photo-placeholder span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-student .photo-placeholder small {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.edit-student .photo-input-hidden {
+  display: none;
+}
+
+.edit-student .photo-guidelines {
+  flex: 1;
+  padding: 18px 22px;
+  background: var(--bg-light);
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+}
+
+.edit-student .photo-guidelines h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin: 0 0 14px 0;
+}
+
+.edit-student .photo-guidelines ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.edit-student .photo-guidelines li {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.edit-student .photo-guidelines li:last-child {
+  margin-bottom: 0;
+}
+
+/* ===============================
+   FORM GRID
+================================ */
+.edit-student .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.edit-student .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.edit-student .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.edit-student .form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-student .required {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+/* ===============================
+   INPUT WRAPPER
+================================ */
+.edit-student .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-student .input-wrapper .input-icon {
+  position: absolute;
+  left: var(--input-icon-left);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--input-icon-size);
+  height: var(--input-icon-size);
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.edit-student .input-wrapper:focus-within .input-icon {
+  color: var(--primary);
+}
+
+/* ===============================
+   FORM INPUT
+================================ */
+.edit-student .form-input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1e293b !important;
+  font-weight: 500;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  will-change: border-color;
+  background: #ffffff !important;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.edit-student .form-input:hover:not(:disabled) {
+  border-color: #cbd5e1;
+}
+
+.edit-student .form-input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.edit-student .form-input.error {
+  border-color: var(--danger);
+  background: #fef2f2 !important;
+}
+
+.edit-student .form-input:disabled {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.edit-student .form-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* ===============================
+   WITH-ICON PADDING (input + select)
+================================ */
+.edit-student input.form-input.with-icon,
+.edit-student select.form-input.with-icon {
+  padding-left: var(--input-padding-left) !important;
+}
+
+/* ===============================
+   SELECT INPUT
+================================ */
+.edit-student select.form-input,
+.edit-student .select-input {
+  cursor: pointer;
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  padding-right: 48px !important;
+  color: #1e293b !important;
+}
+
+.edit-student select.form-input option {
+  background: #ffffff;
+  color: #1e293b;
+  padding: 12px;
+}
+
+.edit-student select.form-input::-ms-expand {
+  display: none;
+}
+
+/* ===============================
+   CLEAR INPUT BUTTON
+================================ */
+.edit-student .clear-input-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: rgba(100, 116, 139, 0.1);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  z-index: 3;
+}
+
+.edit-student .clear-input-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.edit-student .clear-input-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ===============================
+   ERROR & HELP TEXT
+================================ */
+.edit-student .error-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--danger);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.edit-student .error-text svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.edit-student .help-text {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ===============================
+   PARENT CARDS
+================================ */
+.edit-student .parent-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.edit-student .parent-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+}
+
+.edit-student .parent-card:hover {
+  opacity: 0.95;
+}
+
+.edit-student .parent-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.edit-student .parent-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  font-weight: 600;
+  color: white;
+  font-size: 14px;
+}
+
+.edit-student .parent-card-header svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.edit-student .parent-card-header.father {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.edit-student .parent-card-header.mother {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+.edit-student .parent-card-header.guardian {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.edit-student .parent-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.edit-student .parent-card-body.horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.edit-student .parent-card-body.horizontal .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.edit-student .parent-card-body .form-input {
+  padding-left: 16px !important;
+}
+
+/* ===============================
+   FEE TYPE SELECTION
+================================ */
+.edit-student .fee-type-section {
+  margin-bottom: 28px;
+}
+
+.edit-student .section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.edit-student .section-label svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.edit-student .fee-type-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-student .fee-type-option {
+  display: block;
+  cursor: pointer;
+}
+
+.edit-student .fee-type-option input[type="radio"] {
+  display: none;
+}
+
+.edit-student .fee-type-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  background: var(--glass-bg);
+  border: 2px solid var(--border-light);
+  border-radius: 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  will-change: border-color, background-color;
+}
+
+.edit-student .fee-type-option:hover .fee-type-content {
+  border-color: var(--border-medium);
+  background: var(--glass-bg-hover);
+}
+
+.edit-student .fee-type-option.selected .fee-type-content {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.08));
+  border-color: var(--success);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+}
+
+.edit-student .fee-type-icon {
+  font-size: 28px;
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light);
+  border-radius: 14px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.edit-student .fee-type-option.selected .fee-type-icon {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.edit-student .fee-type-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.edit-student .fee-type-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.edit-student .fee-type-option.selected .fee-type-label {
+  color: #065f46;
+}
+
+.edit-student .fee-type-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.edit-student .fee-type-option.selected .fee-type-desc {
+  color: #047857;
+}
+
+.edit-student .fee-type-check {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light);
+  color: transparent;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border: 2px solid var(--border-light);
+}
+
+.edit-student .fee-type-option.selected .fee-type-check {
+  background: linear-gradient(135deg, var(--success), #059669);
+  border-color: var(--success);
+  color: white;
+}
+
+.edit-student .fee-type-check svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===============================
+   FEE CARDS
+================================ */
+.edit-student .fee-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.edit-student .fee-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+}
+
+.edit-student .fee-card:hover {
+  opacity: 0.95;
+}
+
+.edit-student .fee-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.edit-student .fee-card-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-student .fee-card-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 14px;
+}
+
+.edit-student .fee-card-icon svg {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.edit-student .fee-card-icon.monthly {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.edit-student .fee-card-icon.half-yearly {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.edit-student .fee-card-icon.yearly {
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.edit-student .fee-card-icon.security {
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.edit-student .fee-card-icon.next-date {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.edit-student .fee-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.edit-student .fee-card-content > label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   FEE INPUT
+================================ */
+.edit-student .fee-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.edit-student .fee-input-wrapper .currency-symbol {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-weight: 700;
+  color: #475569;
+  z-index: 2;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.edit-student .fee-input-wrapper .form-input,
+.edit-student .form-input.fee-input {
+  width: 100%;
+  height: 60px;
+  padding: 16px 16px 16px 52px !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  border-radius: 12px;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.edit-student .fee-input-wrapper .form-input:focus,
+.edit-student .form-input.fee-input:focus {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: var(--primary);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.edit-student .fee-input-wrapper .form-input.error,
+.edit-student .form-input.fee-input.error {
+  background: #fef2f2 !important;
+  border-color: var(--danger);
+}
+
+.edit-student .fee-input-wrapper .form-input::placeholder,
+.edit-student .form-input.fee-input::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.edit-student .fee-card-content .form-input[type="date"] {
+  height: 48px;
+  padding: 14px 16px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+/* ===============================
+   ALERT BOX
+================================ */
+.edit-student .alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 22px;
+  border-radius: 14px;
+}
+
+.edit-student .alert.alert-info {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.05));
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #1e40af;
+}
+
+.edit-student .alert svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.edit-student .alert-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.edit-student .alert-content strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.edit-student .alert-content p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ===============================
+   FORM ACTIONS
+================================ */
+.edit-student .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: var(--bg-light);
+  border-top: 1px solid var(--border-light);
+  position: relative;
+  z-index: 1;
+}
+
+.edit-student .action-info {
+  flex: 1;
+}
+
+.edit-student .unsaved-changes {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--warning);
+  font-weight: 600;
+  padding: 8px 14px;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.edit-student .unsaved-changes svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.edit-student .action-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.edit-student .cancel-btn,
+.edit-student .submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.edit-student .cancel-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+.edit-student .cancel-btn svg,
+.edit-student .submit-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.edit-student .cancel-btn:hover:not(:disabled) {
+  background: var(--glass-bg-hover);
+  border-color: var(--border-medium);
+  color: var(--text-secondary);
+}
+
+.edit-student .cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.edit-student .submit-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.edit-student .submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-hover), #1e3a8a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.edit-student .submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (min-width: 768px) {
+  .edit-student .fee-type-options {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .edit-student .fee-type-option {
+    flex: 1;
+    position: relative;
+  }
+
+  .edit-student .fee-type-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 18px;
+  }
+
+  .edit-student .fee-type-info {
+    align-items: center;
+  }
+
+  .edit-student .fee-type-check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-student .form-section {
+    padding: 24px;
+  }
+
+  .edit-student .photo-upload-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-student .photo-guidelines {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-student .header-actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .edit-student .header-actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-student .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-student .form-section {
+    padding: 20px 18px;
+  }
+
+  .edit-student .section-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-student .parent-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-student .parent-card-body.horizontal {
+    flex-direction: column;
+  }
+
+  .edit-student .fee-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-student .form-actions {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 18px;
+  }
+
+  .edit-student .action-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .edit-student .action-buttons {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+  .edit-student .action-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-student .allocation-info-banner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-student .banner-details {
+    justify-content: center;
+  }
+
+  .edit-student .photo-preview,
+  .edit-student .photo-placeholder {
+    width: 120px;
+    height: 120px;
+  }
+
+  .edit-student .fee-type-options {
+    flex-direction: column;
+  }
+
+  .edit-student .fee-input-wrapper .form-input,
+  .edit-student .form-input.fee-input {
+    font-size: 22px !important;
+    padding: 14px 14px 14px 48px !important;
+    height: 54px;
+  }
+
+  .edit-student .fee-input-wrapper .currency-symbol {
+    font-size: 20px;
+    left: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-student .section-info h3 {
+    font-size: 16px;
+  }
+
+  .edit-student .section-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .edit-student .fee-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-student .fee-card-content {
+    width: 100%;
+  }
+
+  .edit-student .fee-input-wrapper .form-input,
+  .edit-student .form-input.fee-input {
+    font-size: 20px !important;
+    padding: 12px 12px 12px 44px !important;
+    height: 50px;
+  }
+
+  .edit-student .fee-input-wrapper .currency-symbol {
+    font-size: 18px;
+    left: 12px;
+  }
+
+  .edit-student .form-input {
+    height: 44px;
+    font-size: 14px;
+  }
+}
+
+/* ===============================
+   PRINT STYLES
+================================ */
+@media print {
+  .edit-student {
+    background: white !important;
+  }
+
+  .edit-student .form-card {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  .edit-student .form-actions,
+  .edit-student .header-actions,
+  .edit-student .message-banner,
+  .edit-student .photo-overlay {
+    display: none !important;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY
+================================ */
+.edit-student *:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edit-student *,
+  .edit-student *::before,
+  .edit-student *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===============================
+   AUTOFILL STYLES
+================================ */
+.edit-student input:-webkit-autofill,
+.edit-student input:-webkit-autofill:hover,
+.edit-student input:-webkit-autofill:focus,
+.edit-student select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #1e293b !important;
+  background-color: #ffffff !important;
+}
+
+/* ===============================
+   CUSTOM CONFIRM MODAL
+================================ */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.confirm-modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s ease-out;
+}
+
+.confirm-modal-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fef3c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #f59e0b;
+}
+
+.confirm-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px;
+}
+
+.confirm-modal-message {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirm-modal-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.confirm-modal-btn.cancel {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.confirm-modal-btn.cancel:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.confirm-modal-btn.confirm {
+  background: #3b82f6;
+  color: white;
+}
+
+.confirm-modal-btn.confirm:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.confirm-modal-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}

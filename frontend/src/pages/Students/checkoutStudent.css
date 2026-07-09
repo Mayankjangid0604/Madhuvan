@@ -1,0 +1,466 @@
+/* ===============================
+   CHECKOUT MODAL - GLASSMORPHISM
+================================ */
+
+/* Overlay */
+.checkout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: overlayFadeIn 0.2s ease;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Container */
+.checkout-modal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 25px 80px rgba(15, 23, 42, 0.25);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.checkout-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.header-info p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.checkout-modal-header .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.checkout-modal-header .close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Student Summary */
+.student-summary {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: rgba(248, 250, 252, 0.8);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.summary-item svg {
+  color: #64748b;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Error Message */
+.checkout-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(254, 226, 226, 0.8);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+  color: #991b1b;
+  font-size: 14px;
+}
+
+.checkout-error svg {
+  flex-shrink: 0;
+  color: #dc2626;
+}
+
+/* Form */
+.checkout-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group label svg {
+  color: #64748b;
+  width: 16px;
+  height: 16px;
+}
+
+.form-group .required {
+  color: #ef4444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ef4444;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.input-hint {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Form Row */
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .flex-1 {
+  flex: 1;
+}
+
+.form-row .flex-2 {
+  flex: 2;
+}
+
+/* Sections */
+.checkout-section {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.refund-section {
+  background: linear-gradient(135deg, rgba(220, 252, 231, 0.5) 0%, rgba(187, 247, 208, 0.3) 100%);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.section-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #047857;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.section-header-title svg {
+  color: #059669;
+}
+
+.section-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Refund Preview */
+.refund-preview {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  overflow: hidden;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.preview-header svg {
+  width: 18px;
+  height: 18px;
+}
+
+.preview-content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preview-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #475569;
+}
+
+.preview-row .amount {
+  font-weight: 700;
+  font-size: 18px;
+  color: #047857;
+}
+
+.preview-row.ledger-entry {
+  padding-top: 10px;
+  border-top: 1px dashed rgba(16, 185, 129, 0.3);
+}
+
+.preview-row .entry-type {
+  font-weight: 600;
+  color: #dc2626;
+  background: rgba(254, 226, 226, 0.5);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.preview-description {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(248, 250, 252, 0.8);
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+  font-size: 13px;
+  color: #475569;
+}
+
+.preview-description svg {
+  flex-shrink: 0;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.preview-description strong {
+  color: #1e293b;
+}
+
+/* Warning Notice */
+.checkout-warning {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(254, 242, 242, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+}
+
+.checkout-warning svg {
+  color: #dc2626;
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+}
+
+.checkout-warning p {
+  margin: 0;
+  font-size: 13px;
+  color: #991b1b;
+  line-height: 1.5;
+}
+
+.checkout-warning strong {
+  color: #7f1d1d;
+}
+
+/* Action Buttons */
+.checkout-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.checkout-actions .btn,
+.checkout-actions button {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+.checkout-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.checkout-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.checkout-modal::-webkit-scrollbar-thumb {
+  background: rgba(203, 213, 225, 0.5);
+  border-radius: 4px;
+}
+
+.checkout-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .checkout-modal {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .checkout-modal-header {
+    border-radius: 0;
+  }
+
+  .student-summary {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checkout-actions {
+    flex-direction: column;
+  }
+
+  .checkout-form {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row .flex-1,
+  .form-row .flex-2 {
+    flex: none;
+    width: 100%;
+  }
+}
